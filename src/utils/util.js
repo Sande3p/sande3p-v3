@@ -1,12 +1,5 @@
 // utils.js - migrated from app/js/util.js
 
-// dateDiff: returns absolute day difference between two dates
-export function dateDiff(x, y) {
-  const dx = new Date(x);
-  const dy = new Date(y);
-  return parseInt(Math.abs((dy - dx) / 1000 / 60 / 60 / 24), 10);
-}
-
 // isLocalStorageSupported: feature-detects localStorage availability
 export function isLocalStorageSupported() {
   const testKey = 'test';
@@ -37,20 +30,97 @@ export function getBrowser() {
   return bObj;
 }
 
-// getWins: filters challenges array for those with winning placements
-export function getWins(inputArray) {
-  return (inputArray || []).filter((el) => el.userDetails && el.userDetails.winningPlacements);
-}
+const DEVICON_CLASS_MAP = {
+  css: 'devicon-css3-plain',
+  css3: 'devicon-css3-plain',
+  html: 'devicon-html5-plain',
+  html5: 'devicon-html5-plain',
+  js: 'devicon-javascript-plain',
+  javascript: 'devicon-javascript-plain',
+  ts: 'devicon-typescript-plain',
+  typescript: 'devicon-typescript-plain',
+  vue: 'devicon-vuejs-plain',
+  vuejs: 'devicon-vuejs-plain',
+  react: 'devicon-react-original',
+  angular: 'devicon-angularjs-plain',
+  angularjs: 'devicon-angularjs-plain',
+  node: 'devicon-nodejs-plain',
+  nodejs: 'devicon-nodejs-plain',
+  sql: 'devicon-mysql-plain',
+  mysql: 'devicon-mysql-plain',
+  mongodb: 'devicon-mongodb-plain',
+  'aws lambda': 'devicon-amazonwebservices-plain-wordmark',
+  awslambda: 'devicon-amazonwebservices-plain-wordmark',
+  rabbitmq: 'devicon-rabbitmq-original',
+  json: 'devicon-json-plain',
+  php: 'devicon-php-plain',
+  wordpress: 'devicon-wordpress-plain',
+  ionic: 'devicon-ionic-original',
+  express: 'devicon-express-original',
+  d3: 'devicon-d3js-plain',
+  d3js: 'devicon-d3js-plain',
+};
 
-// getProTechs: derive icon class names from a comma separated technologies string
+// getProTechs: derive valid Devicon class names from a technology string or list
 export function getProTechs(item) {
-  const tech = item.technologies.replace(' ', '').split(',');
-  return tech.map((el) => `icon-${el.toLowerCase()}`.replace(/[ .]/g, ''));
+  const rawTechnologies = item?.technologies;
+  const technologies = Array.isArray(rawTechnologies)
+    ? rawTechnologies
+    : String(rawTechnologies || '').split(',');
+
+  return technologies
+    .map((tech) => String(tech).trim())
+    .filter(Boolean)
+    .map((tech) => {
+      const key = tech.toLowerCase().replace(/[ .()/]/g, '');
+      return DEVICON_CLASS_MAP[key] || `devicon-${key}-plain`;
+    });
 }
 
-// getTechTitle: format an icon class name back into a readable title
+// getTechTitle: format a technology class name back into a readable title
 export function getTechTitle(iconName) {
-  if (iconName === undefined) return false;
-  const cleaned = iconName.replace('icon-', '').replace('html', 'HTML').replace('css', 'CSS');
-  return cleaned.substr(0, 1).toUpperCase() + cleaned.substr(1);
+  if (iconName === undefined || iconName === null) return false;
+
+  const raw = iconName
+    .replace(/^devicon-/, '')
+    .replace(/\s+colored$/, '')
+    .replace(/-plain(-wordmark)?$/, '')
+    .replace(/-original(-wordmark)?$/, '')
+    .toLowerCase();
+
+  const techTitleMap = {
+    css3: 'CSS',
+    html5: 'HTML5',
+    javascript: 'JavaScript',
+    typescript: 'TypeScript',
+    vuejs: 'Vue',
+    react: 'React',
+    angularjs: 'Angular.js',
+    nodejs: 'Node.js',
+    mysql: 'MySQL',
+    mongodb: 'MongoDB',
+    amazonwebservices: 'AWS',
+    rabbitmq: 'RabbitMQ',
+    json: 'JSON',
+    php: 'PHP',
+    wordpress: 'WordPress',
+    ionic: 'Ionic',
+    express: 'Express',
+    d3js: 'D3.js',
+    vue: 'Vue',
+    js: 'JavaScript',
+    ts: 'TypeScript',
+    css: 'CSS',
+  };
+
+  if (techTitleMap[raw]) return techTitleMap[raw];
+
+  const fallback = raw
+    .replace(/[-_]+/g, ' ')
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (!fallback) return false;
+  return fallback.charAt(0).toUpperCase() + fallback.slice(1);
 }

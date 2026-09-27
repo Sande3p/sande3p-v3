@@ -1,19 +1,19 @@
 {
   "handle": "hi4sandy",
   "name": "Sandeep",
-  "surname":"Yadav",
+  "surname": "Yadav",
   "localPhotoLink": "./external/hi4sandy.jpg",
   "localPhotoLinkLq": "./external/hi4sandy-lq.jpg",
-  "email":"sande3p.yadav@gmail.com",
-  "tagline": "Hi, I'm a front-end developer, UI/UX specialist @hp, competitor @topcoder. I create apps, websites & other cool things. Like  listening music and exploring places.",
-  "connects": [{
-    "name": "LinkedIn",
-    "href": "https://www.linkedin.com/in/sande3p"
-  },{
-    "name": "[ hi4sandy ]",
-    "href": "https://www.topcoder.com/members/hi4sandy/"
-  },{
-    "name": "@hi4sandy",
-    "href": "https://www.twitter.com/hi4sandy/"
-  }]
+  "email": "sande3p.yadav@gmail.com",
+  "tagline": "I build scalable full-stack applications — from component libraries at HP to leading client projects at Topcoder — combining technical depth with fast delivery. Outside work, I invest in stocks and enjoy motorcycle riding and travelling",
+  "connects": [
+    {
+      "name": "LinkedIn",
+      "href": "https://www.linkedin.com/in/sande3p"
+    },
+    {
+      "name": "[ hi4sandy ]",
+      "href": "https://www.topcoder.com/members/hi4sandy/"
+    }
+  ]
 }
