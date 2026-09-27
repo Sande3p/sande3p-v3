@@ -3,11 +3,11 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase, ref } from 'firebase/database';
 
 const fireConfig = {
-  apiKey: 'AIzaSyDU7i_KC4yPk5NHY7s6ytSR8j_CfipCP8I',
-  authDomain: 'sans-83799.firebaseapp.com',
-  databaseURL: 'https://sans-83799.firebaseio.com',
-  storageBucket: 'sans-83799.appspot.com',
-  messagingSenderId: '736771219117',
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
 };
 
 export const firebaseApp = initializeApp(fireConfig);
