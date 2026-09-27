@@ -202,6 +202,7 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-left: 10px;
 
         svg {
           display: block;
@@ -227,11 +228,11 @@ body {
   }
 
   .gear-ring--slow {
-    animation: rotate-cw 18s linear infinite;
+    animation: rotate-cw 10s linear infinite;
   }
 
   .gear-ring--fast {
-    animation: rotate-ccw 12s linear infinite;
+    animation: rotate-ccw 10s linear infinite;
   }
 
   @keyframes rotate-cw {

@@ -35,6 +35,24 @@ const fallbackRecentWork = {
         ],
       },
       {
+        id: 1006,
+        title: "Full stack developer",
+        company: "HP Inc",
+        location: "London, UK",
+        technologies: [
+          "Vue",
+          "React",
+          "TypeScript",
+          "Node.js",
+          "SQL",
+          "MongoDB",
+        ],
+        highlights: [
+          "Delivered full-stack features (Vue, Node.js) from UI to API deployment",
+          "Resolved customer-reported incidents, and mentored team members through code reviews.",
+        ],
+      },
+      {
         id: 1003,
         title: "Full stack developer",
         company: "HP Inc",
@@ -103,18 +121,6 @@ const fallbackRecentWork = {
           "Debugging my code using the Chrome devTools, Firefox Devtools, etc.",
           "Developing Frontend & Apps using technologies like ReactJS, AngularJS, React Native, HTML, SCSS, CSS, JavaScript, jQuery, Axios, etc. & Charts using D3 & similar frameworks.",
           "API Integration with the front end.",
-        ],
-      },
-      {
-        id: 1006,
-        title: "UI Engineer",
-        company: "Engage Together",
-        location: "San Diego, CA",
-        technologies: ["CSS", "HTML5", "JavaScript"],
-        highlights: [
-          "Developed branded web experiences and reusable UI components for customer-facing applications.",
-          "Enhanced interaction quality and responsiveness to improve the overall user journey.",
-          "Collaborated with design and backend teams to deliver cohesive product features with strong UX.",
         ],
       },
       {

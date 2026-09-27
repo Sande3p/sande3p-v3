@@ -232,7 +232,7 @@ export default function Landing() {
           <div className="gear-sn">
             <figure className="fig">
               <div className="gear-illustration" aria-hidden="true">
-                <svg viewBox="0 0 218.6 286.4" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 218.6 296" xmlns="http://www.w3.org/2000/svg">
                   <g className="gear-ring gear-ring--slow">
                     <path
                       id="node1"
@@ -306,7 +306,7 @@ export default function Landing() {
         </div>
 
         <div className="sn-rw th-lgt showcase th-ziggy coderwall-effect">
-          <div className="bg-tx">2</div>
+          <div className="bg-tx">LABS</div>
           <h2 id="BackToWork">Labs</h2>
           <div className="bg-ziggy icon-abstract3-2" data-grunticon-embed></div>
           <div className="exploders">
