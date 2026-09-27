@@ -1,0 +1,237 @@
+@use 'sass:math';
+
+/* fonts */
+
+$fz-root: 16px;
+$fz-root-lg: 14px;
+$fz-root-sm: 12px;
+// layout
+$max-width: 1280px;
+$page-width: 1024px;
+
+/* font weight */
+
+$fw-x:100;
+$fw-3x: 300;
+$fw-4x: 400;
+$fw-5x: 400;
+$fw-6x: 600;
+$fw-7x: 700;
+// line-height
+$lh-x: 1em;
+$lh-2x: 1.2em;
+$lh-3x: 1.4em;
+$lh-4x: 1.6em;
+
+/*colors */
+
+$white: #fff;
+$bright: #fff;
+$gray9: #ddd;
+$gray8: #ccc;
+$gray7: #aaa;
+$gray6: #888;
+$gray5: #666;
+$gray4: #444;
+$gray3: #333;
+$gray2: #222;
+$gray1: #111;
+$dark: #000;
+$prim-color: #333;
+$link-color: #08a5e1;
+$link-color-h: #1477b7;
+
+/* rw heights */
+
+$ht-normal: 400px;
+
+/* rw heights in */
+
+$htr-normal: 20rem;
+
+/* gutter */
+
+$gutter-lg: 6px;
+$gutter-sm: 0;
+
+/* rw heights in vh */
+
+$vh-x: 20vh;
+$vh-x2: math.div($vh-x, 2);
+$vh-x3: math.div($vh-x, 3);
+$vh-x4: math.div($vh-x, 4);
+$vh-x8: math.div($vh-x, 8);
+$vh-2x: 2*$vh-x;
+$vh-3x: 3*$vh-x;
+$vh-4x: 4*$vh-x;
+$vh-5x: 5*$vh-x;
+$vh-full: 100vh;
+
+/* paddings */
+
+$p-xs: 4px;
+$p-sm: 8px;
+$p-md: 16px;
+$p-lg: 32px;
+$p-xl: 64px;
+
+/* sizes */
+
+$sz-x: 40px;
+$sz-2x: 2*$sz-x;
+$sz-3x: 3*$sz-x;
+$sz-4x: 4*$sz-x;
+$sz-5x: 5*$sz-x;
+$sz-6x: 6*$sz-x;
+$sz-7x: 7*$sz-x;
+
+/* spacings */
+
+$sp-x: 4px;
+$sp-2x: 2*$sp-x;
+$sp-3x: 3*$sp-x;
+$sp-4x: 4*$sp-x;
+$sp-5x: 5*$sp-x;
+$sp-6x: 6*$sp-x;
+$sp-7x: 7*$sp-x;
+$sp-8x: 8*$sp-x;
+
+$scon: 135px;
+$scon-md: 20px;
+$scon-sm: 16px;
+/* radius */
+
+$r-x: 2px;
+$r-2x: 2*$r-x;
+$r-3x: 3*$r-x;
+$r-4x: 4*$r-x;
+$r-5x: 5*$r-x;
+
+/* theme */
+
+
+/* lgt */
+
+$th-lightest: #ffffff;
+$th-lgt-blend: #f6f6f7;
+$th-lgt-bg: #4f2d5b;
+$th-lgt-color: #1b2e4f;
+
+/* dark */
+
+$th-dark-bg: #1e1d39;
+$th-glow-1: #f755a3;
+$th-glow-2: #ff595d;
+$th-color: rgba($bright, 0.6);
+$th-color-ht: #c74e96;
+$th-color-htd: #c74e96;
+$th-color-blend: #7d4280;
+$th-bg1: #26243d;
+$th-bg2: #312844;
+$th-bg3: #1d273c;
+$th-bg4: #20253b;
+$th-bg-btn: rgba(247, 85, 163, 0.2);
+$th-grad-1: rgb(79, 46, 91);
+$th-grad-2: #1e1d39;
+$th-grad2-1: #533146;
+$th-grad2-2: #22213A;
+$th-grad3-1: #24454f;
+$th-grad3-2: #0d1b35;
+$th-gray-gr: #728c9a;
+$th-hover-gray: #f6f6f7;
+$th-deep-blue: #1c1f3d;
+
+/* beta theme */
+
+$th-beta-bg: #1e1d39;
+$th-beta-color: rgba(255, 255, 255, 0.6);
+$th-beta-color-ht: #c74e96;
+$th-beta-color-blended: #7d4280;
+$th-beta-glow-1: #f755a3;
+$th-beta-glow-2: #ff595d;
+$th-beta-bg-1: #26243d;
+$th-beta-bg-2: #312844;
+$th-beta-bg-3: #1d273c;
+$th-beta-bg-4: #20253b;
+$th-beta-bg-btn: rgba(247, 85, 163, 0.2);
+$th-beta-grad-1: #325861;
+$th-beta-grad-2: #1d1f42;
+$th-beta-ws: rgba($bright, 1);
+$th-beta-wsx1: rgba($bright, 0.1);
+$th-beta-wsx3: rgba($bright, 0.3);
+$th-beta-wsx5: rgba($bright, 0.5);
+$th-beta-wsx7: rgba($bright, 0.5);
+$th-beta-wsx9: rgba($bright, 0.5);
+$th-beta-gs: rgba(0, 0, 0, 1);
+$th-beta-gsx1: rgba(0, 0, 0, 0.1);
+$th-beta-gsx3: rgba(0, 0, 0, 0.3);
+$th-beta-gsx5: rgba(0, 0, 0, 0.5);
+$th-beta-gsx7: rgba(0, 0, 0, 0.7);
+$th-beta-gsx9: rgba(0, 0, 0, 0.9);
+$th-beta-pop1: #f48244;
+$th-beta-pop1-color: #b96434;
+$th-beta-pop2: #00acc1;
+$th-beta-pop2-color: #00838f;
+
+/* z spaces */
+
+$z-x:-10;
+$zx:10;
+$z2x:100;
+$z3x:1000;
+$znx:999999;
+
+
+// img size
+$imgH: 480px;
+$imgV: 300px;
+
+// chart /status 
+
+/* mixins */
+
+// layers
+@mixin layer-1{
+  z-index: -10;
+}
+@mixin layer{
+  z-index: -10;
+}
+@mixin layer1{
+  z-index: 10;
+}
+@mixin ease {
+  transition-duration: 0.3s;
+}
+
+@mixin abs {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+// shadow
+@mixin shadow{
+  box-shadow: 0 0 20px 0px rgba($dark, 0.3);
+  border: 1px solid $gray6;
+  border: 1px solid rgba($dark, 0.15);
+}
+
+/* heading */
+
+@mixin h2 {
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: $th-lgt-color;
+  text-transform: uppercase;
+}
+
+//responsive mixin 
+$sm-width: 1023px;
+@mixin tablet {
+  @media (max-width: #{$sm-width}) {
+    @content;
+  }
+}

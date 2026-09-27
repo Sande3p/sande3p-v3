@@ -1,0 +1,325 @@
+@use 'sass:color';
+@use 'sass:math';
+
+//////////////
+// var //
+//////////////
+$header-ht-sm: 46px;
+// Theme
+$cForegound: #ff0055;
+$cBackground: #ffa75c;
+$cBackgroundEnd: #f71e64;
+$cForegoundBright: color.adjust($cForegound, $saturation: 0.2%);
+$cHeader: #ffa770;
+$footer: #fdc648;
+$cShadow: rgba(black, 0.3);
+$gray: #fafbfc;
+$darker: #262d39;
+$dark: #262d39;
+$gray9: #20242e;
+$gray8: #4e5a6c;
+$gray7: #545358;
+$gray6: #aeaeae;
+$bright: #fff;
+
+/* heights*/
+
+$htHeaderSm: 40px;
+$max-width: 1280px;
+$gutter-lg: 20px;
+$gutter: 16px;
+$gutter-sm: 10px;
+$ht1: #616cd6;
+// object class
+$bg: #eceff4;
+$h-bg: #2d3e50;
+$h-c: #859eb9;
+$ico: $gray6;
+$ht: #2d3e50;
+$ht-inv: #98ebec;
+// card
+$card-bg: #fff;
+$card-t: #3b4f63;
+$card-c: #6f8092;
+$card-h: #1f3e4c;
+// mixins
+@mixin shadow {
+  box-shadow: 0 8px 12px 0 $cShadow;
+  border: 1px solid $cForegound;
+}
+
+@mixin shadow-sm {
+  box-shadow: 0 2px 10px 0 rgba($cShadow, 0.1);
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+// css
+[data-theme="rem"] {
+  color: rgba($bright, 1);
+  background: linear-gradient($cBackground, $cBackgroundEnd);
+  &.cover {
+    height: 100vh;
+    overflow: auto;
+    @include view-sm{
+      height: calc(100vh - 46px);
+    }
+  }
+  .artboard {
+    min-height: calc(100vh - 60px);
+  }
+  @include view-sm {
+    padding-top: $header-ht-sm;
+    .artboard {
+      min-height: calc(90vh - 70px);
+    }
+  }
+  .viewport {
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 0 $gutter-lg;
+    @include view-sm {
+      padding: 0 $gutter-sm;
+    }
+  }
+  .main-footer {
+    padding-top: 0;
+  }
+  .fx {
+    display: flex;
+    justify-content: space-between;
+  }
+  // head
+  .main-head {
+    min-height: 135px;
+    background-color: $h-bg;
+    color: rgba($cForegound, 0.8);
+    padding-bottom: $gutter;
+    background-color: $cHeader;
+    @include shadow-sm;
+    &.md {
+      min-height: 60px;
+      height: 60px;
+      padding: 0;
+      transition: 0.3s;
+      h1 {
+        font-size: 28px;
+        line-height: 60px;
+        transition: 0.3s;
+        .ico {
+          padding: 0;
+          vertical-align: top;
+        }
+      }
+      @include view-sm {
+        min-height: $htHeaderSm;
+        height: $htHeaderSm;
+        h1 {
+          font-size: 20px;
+          line-height: $htHeaderSm;
+        }
+      }
+    }
+    @include ease;
+    transition-property: transform;
+    will-change: transform;
+    transform-origin: 0 0;
+    h1 {
+      .ico {
+        padding-top: 8px;
+        display: inline-block;
+        vertical-align: middle;
+        svg {
+          display: block;
+          width: 180px;
+          @include ease;
+          transition-property: transform;
+          will-change: transform;
+          transform-origin: 0 0;
+        }
+      }
+      small {
+        font-size: 2rem;
+        line-height: 1.4em;
+        vertical-align: middle;
+        margin-left: 2*$gutter;
+      }
+      @include view-sm {
+        .ico {
+          vertical-align: top;
+          svg {
+            display: inline-block;
+            width: 120px;
+          }
+        }
+        small {
+          line-height: 66px;
+          vertical-align: top;
+          margin-left: $gutter-sm;
+        }
+      }
+    }
+    .gist {
+      font-size: 1.4rem;
+      padding-top: math.div($gutter, 2);
+      line-height: 1.2em;
+      color: $card-c;
+    }
+    @include view-sm {
+      min-height: 66px;
+      padding: 0;
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      box-shadow: 0 0 5px 0 rgba(250, 56, 30, 0.5);
+      .gist {
+        display: none;
+      }
+    }
+  }
+  // main-con
+  .main-con {
+    //deck
+    .deck {
+      padding: 2*$gutter 0;
+      @include view-sm {
+        padding: $gutter 0;
+      }
+    }
+    //card
+    .card {
+      background: $card-bg;
+      border-radius: 4px;
+      @include shadow;
+      padding: 0 $gutter 4px;
+      margin-top: 2*$gutter;
+      overflow: hidden;
+      color: $card-c;
+      &:first-child {
+        margin-top: 0;
+      }
+      @include view-sm {
+        margin-top: $gutter;
+        @include shadow-sm;
+      }
+      .card-header {
+        min-height: $header-ht-sm;
+        align-items: baseline;
+        padding: 8px 0;
+        justify-content: center;
+        h2 {
+          font-size: 1.4rem;
+          line-height: 1.4em;
+        }
+        .text-ctrl {
+          font-size: 2rem;
+          line-height: 1.6em;
+          padding: 0 4px;
+          margin-left: 7px;
+          vertical-align: middle;
+          width: 72px;
+          text-align: center;
+          color: $cForegound;
+          border-bottom: 1px solid rgba($cForegound, 0.5);
+          outline: none;
+          overflow: hidden;
+          white-space: nowrap;
+          &:hover {
+            border-bottom: 1px solid $cForegound;
+          }
+        }
+        .detail {
+          font-size: 1.4rem;
+          line-height: 1.4em;
+        }
+      }
+      .card-con {
+        border-top: 1px solid color.adjust($gray, $lightness: -6%);
+        margin: 0 -1*$gutter;
+        font-size: 1.4rem;
+        background-image: repeating-linear-gradient(180deg, $bright 0, $bright 48px, $gray 48px, $gray 96px);
+        &.limit-height {
+          max-height: 75vh;
+          overflow: auto;
+          @include view-sm{
+            max-height: 80vh;
+          }
+        }
+        .rw {
+          min-height: 48px;
+          text-align: center;
+          padding: $gutter-sm $gutter;
+          align-items: center;
+          justify-content: center;
+          .cmd-wrap {
+            color: $card-c;
+            white-space: nowrap;
+          }
+          .cmd-desc {
+            font-size: 1.125rem;
+            flex: 0 20%;
+            display: none;
+          }
+          @include view-sm {
+            &.fx {
+              flex-wrap: wrap;
+            }
+            .cmd-wrap {
+              flex: 1 100%;
+              .code {
+                font-size: 1.6rem;
+              }
+            }
+            .cmd-desc {
+              margin-top: $gutter-sm;
+              font-size: 1.2rem;
+              flex: 1 100%;
+            }
+          }
+          &.important {
+            .cmd-wrap {
+              color: $card-h;
+            }
+            .cmd-desc {
+              color: $card-h;
+            }
+          }
+        }
+        // columned
+        &.columned {
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+          .rw {
+            flex: 1 50%;
+            min-width: 250px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+  width: 100px;
+  height: 100px;
+  display: none;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.loading {
+  .loader {
+    display: block;
+  }
+}

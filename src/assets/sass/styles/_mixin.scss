@@ -1,0 +1,47 @@
+/* mixins */
+// font
+@mixin ffDefault{
+  font-family: 'roboto', arial, sans-serif;
+}
+@mixin ffSec{
+  font-family: lora, arial, sans-serif;
+}
+
+// break-ponit
+@mixin view-lg {
+  @media only screen and (max-width: 1280px) {
+    @content;
+  }
+}
+
+@mixin view-md {
+  @media only screen and (max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin view-sm {
+  @media only screen and (max-width: 480px) {
+    @content;
+  }
+}
+
+
+// anims
+@mixin fade-in{
+  transition-duration: 0.3s;
+}
+
+// hideger z
+@mixin uncover-z{
+  z-index: 50;
+}
+
+// link-border
+@mixin lk-bdr{
+  border-bottom: 1px dotted;
+  @include ease;
+}
+@mixin lk-bdra{
+  border-style: solid;
+}

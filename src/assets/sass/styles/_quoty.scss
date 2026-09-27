@@ -1,0 +1,39 @@
+// th-quoty
+.th-quoty{
+  background-image: radial-gradient(ellipse farthest-corner at 50% -50%, $th-grad2-1 0%, $th-grad2-1 45%, $th-grad2-2 95%) !important;
+  .quote{
+    position: relative;
+    z-index: 1;
+    &.frm{
+      margin-top: $sp-4x;
+      .rw{
+        margin-top: $sp-4x;
+      }
+      input{
+        outline: none;
+        background: transparent;
+        border-bottom: 1px solid rgba($white,0.2);
+        color: rgba($white,0.6);
+        width: 100%;
+        max-width: 420px;
+      }
+      .lk-send{
+        color: $th-beta-wsx3;
+        margin-top: $sp-8x;
+        width: auto;
+        opacity: 0;
+        transition: 0.5s;
+        border-bottom: 1px dotted $th-beta-wsx3;
+        &.a{
+          opacity: 1;
+        }
+        &:hover{          
+          border-bottom: 1px solid $th-beta-wsx3;
+        }
+        &:active{
+          @extend :hover;
+        }
+      }
+    }
+  }
+}

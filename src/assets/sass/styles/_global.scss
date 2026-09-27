@@ -1,0 +1,67 @@
+//globals
+/* commons */
+
+html {
+  font-size: $fz-root;
+  @include view-lg {
+    font-size: $fz-root-lg;
+  }
+  @include view-sm {
+    font-size: $fz-root-sm;
+  }
+}
+
+body {
+  overflow: auto;
+  overflow-x: auto;
+  //min-width: $page-width;
+}
+
+html,
+body,
+input,
+select,
+textarea,
+input {
+  @include ffDefault;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.clear {
+  clear: both;
+}
+
+strong {
+  font-weight: 500;
+}
+
+.hide {
+  display: none;
+}
+
+
+[data-role="page"]{  
+  outline: none;
+}
+// afterload
+[data-role="afterload"] {
+  opacity: 0;
+  @include fade-in;
+}
+
+.jsl [data-role="afterload"] {
+  opacity: 1;
+}
+
+.preloaded{
+  display: none;
+}
+// first-paint
+.first-paint{
+  .preloaded{
+    display: block;
+  }
+}
