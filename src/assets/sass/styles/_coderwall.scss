@@ -276,8 +276,12 @@ $cw-h-sm: 312px;
       margin-left: 2*$cw-w;
     }
 
-    .wallpost:nth-child(7) {
+    .wallpost:nth-child(6) {
       @extend .poped2;
+
+        h3 {
+          color: $th-lightest;
+        }
     }
 
     .wallpost:last-child {
@@ -328,8 +332,12 @@ $cw-h-sm: 312px;
         margin-left: 0;
       }
 
-      .wallpost:nth-child(7) {
+      .wallpost:nth-child(6) {
         @extend .poped2-md;
+
+        h3 {
+          color: $th-lightest;
+        }
       }
 
       .wallpost:last-child {
