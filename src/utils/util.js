@@ -42,6 +42,8 @@ const DEVICON_CLASS_MAP = {
   vue: 'devicon-vuejs-plain',
   vuejs: 'devicon-vuejs-plain',
   react: 'devicon-react-original',
+  reactnative: 'devicon-react-original',
+  'react-native': 'devicon-react-original',
   angular: 'devicon-angularjs-plain',
   angularjs: 'devicon-angularjs-plain',
   node: 'devicon-nodejs-plain',
@@ -49,8 +51,9 @@ const DEVICON_CLASS_MAP = {
   sql: 'devicon-mysql-plain',
   mysql: 'devicon-mysql-plain',
   mongodb: 'devicon-mongodb-plain',
-  'aws lambda': 'devicon-amazonwebservices-plain-wordmark',
+  'aws-lambda': 'devicon-amazonwebservices-plain-wordmark',
   awslambda: 'devicon-amazonwebservices-plain-wordmark',
+  amazonsqs: 'devicon-amazonwebservices-plain-wordmark',
   rabbitmq: 'devicon-rabbitmq-original',
   json: 'devicon-json-plain',
   php: 'devicon-php-plain',
@@ -59,6 +62,8 @@ const DEVICON_CLASS_MAP = {
   express: 'devicon-express-original',
   d3: 'devicon-d3js-plain',
   d3js: 'devicon-d3js-plain',
+  'ci-cd': 'devicon-azuredevops-plain',
+  cicd: 'devicon-azuredevops-plain',
 };
 
 // getProTechs: derive valid Devicon class names from a technology string or list
@@ -95,6 +100,7 @@ export function getTechTitle(iconName) {
     typescript: 'TypeScript',
     vuejs: 'Vue',
     react: 'React',
+    reactnative: 'React Native',
     angularjs: 'Angular.js',
     nodejs: 'Node.js',
     mysql: 'MySQL',

@@ -21,12 +21,12 @@ const fallbackRecentWork = {
           "Node.js",
           "SQL",
           "MongoDB",
-          "AWS Lambda",
+          "AWS-Lambda",
           "Amazon SQS",
           "RabbitMQ",
           "Kubernetes",
           "Docker",
-          "CI/CD",
+          "CI-CD",
         ],
         highlights: [
           "Delivered enterprise frontend experiences using Vue, React, TypeScript, and Node.js for product teams in HP.",
@@ -59,7 +59,7 @@ const fallbackRecentWork = {
         location: "Bangalore, India",
         technologies: [
           "React",
-          "React Native",
+          "ReactNative",
           "Node.js",
           "PostgreSQL",
           "Python",
@@ -108,7 +108,7 @@ const fallbackRecentWork = {
         location: "Freelance / Remote",
         technologies: [
           "React",
-          "React Native",
+          "ReactNative",
           "Node.js",
           "CSS",
           "HTML5",

@@ -45,6 +45,32 @@
   }
 }
 
+.icon-ai-chat {
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  color: inherit;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M24 2.5c0 11.8741-9.6259 21.5-21.5 21.5M24 45.5C24 33.6259 14.3741 24 2.5 24M24 2.5c0 11.8741 9.6259 21.5 21.5 21.5M24 45.5C24 33.6259 33.6259 24 45.5 24'/%3E%3C/svg%3E");
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M24 2.5c0 11.8741-9.6259 21.5-21.5 21.5M24 45.5C24 33.6259 14.3741 24 2.5 24M24 2.5c0 11.8741 9.6259 21.5 21.5 21.5M24 45.5C24 33.6259 33.6259 24 45.5 24'/%3E%3C/svg%3E");
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  vertical-align: middle;
+}
+
+.animate-rotation {
+  box-sizing: border-box;
+  border: 2px solid $th-lgt-color;
+  border-radius: 999px;
+  transform-origin: center;
+  will-change: transform;
+  animation: rotate-border-object 30s linear infinite;
+}
+
 html,
 body {
   background: #312844;
@@ -98,17 +124,19 @@ body {
     @include view-md {
       bottom: -295px;
     }
+
     svg {
       path {
         fill: $th-deep-blue;
       }
     }
-    &.icon-abstract1{
-    svg {
-      path {
-        fill: $th-deep-blue2;
+
+    &.icon-abstract1 {
+      svg {
+        path {
+          fill: $th-deep-blue2;
+        }
       }
-    }
 
     }
   }
@@ -226,7 +254,7 @@ body {
   }
 
   .gear-1 {
-    fill: $th-deep-blue; 
+    fill: $th-deep-blue;
   }
 
   .gear-ring {
@@ -260,6 +288,16 @@ body {
 
     to {
       transform: rotate(-360deg);
+    }
+  }
+
+  @keyframes rotate-border-object {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
     }
   }
 
@@ -462,7 +500,7 @@ body {
         &.nw {
           display: flex;
           gap: $sp-4x;
-          align-items: flex-start;
+          align-items: center;
 
           .stat-item {
             flex: 1 1 0;
@@ -489,7 +527,7 @@ body {
         font-size: 1.125rem;
         font-style: italic;
         line-height: $lh-3x;
-        margin-top: 120px;
+        margin-top: 24px;
 
         h3 {
           margin: 0;
@@ -505,13 +543,44 @@ body {
       }
 
 
-      .apps-section {
+      .chat-section {
         position: relative;
+        padding-top: 20px;
         padding-bottom: 20px;
+
+        .chat-block {
+          display: inline-block;
+          height: 36px;
+          border: 1px solid $th-lgt-color;
+          border-radius: 8px;
+          line-height: 34px;
+          padding: 0 12px;
+          background: transparent;
+          color: inherit;
+          cursor: pointer;
+          appearance: none;
+          -webkit-appearance: none;
+          font: inherit;
+
+          &.p-0 {
+            padding: 0;
+          }
+
+          i {
+            position: relative;
+            top: auto;
+            right: auto;
+            left: auto;
+            bottom: auto;
+          }
+        }
+
+        .llm-pill {
+          color: $th-lgt-color;
+        }
 
         h3 {
           font-size: 1.5rem;
-          padding-bottom: .6rem
         }
 
         .app-name {
@@ -523,34 +592,6 @@ body {
 
         .rw-s {
           padding-left: 0
-        }
-
-        .app-thumb {
-          display: flex;
-          align-items: center
-        }
-
-        .app-thumb .app-wrap {
-          width: 100px;
-          height: 100px
-        }
-
-        .app-thumb .app-icons img {
-          width: 100px;
-          height: 100px;
-          border-radius: 20px
-        }
-
-        .appstore-links {
-          padding-left: 20px;
-          line-height: 2rem;
-          font-size: 20px
-        }
-
-        .appstore-links .u {
-          padding: .5rem 0;
-          display: block;
-          font-size: 1.2rem
         }
       }
 
@@ -802,5 +843,16 @@ body {
   color: $th-beta-wsx3;
   background: $th-lgt-bg;
   padding: 200px $scon*0.5 40px;
-  font-size: 2em;
+  font-size: 1.2em;
+
+  .btn-link {
+    outline: none;
+    border: none;
+    font-size: $fz-root;
+    background-color: transparent;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

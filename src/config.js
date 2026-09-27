@@ -21,6 +21,10 @@ export const config = {
   stat: "/data/profile-history.json",
   latestStat: "https://api.topcoder.com/v6/members/hi4sandy/stats",
   topcoderProfileUrl: "https://profiles.topcoder.com/hi4sandy",
+  llmApiUrl: "https://py-chat-j4pm.onrender.com/api/chat/",
+  CHAT_WEBSITE_REF_URLS: [
+    "https://docs.google.com/document/d/e/2PACX-1vTQW2fNtBPwMwIvWZZsLI3DKf4Xr8M1aMJhWe2hfC_OCXJy2fWoPX2GGHwmQOfnUduOXC7hsw7JX2k6/pub",
+  ],
 };
 
 export default config;

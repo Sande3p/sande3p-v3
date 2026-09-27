@@ -179,10 +179,13 @@ $cw-h-sm: 312px;
           flex-wrap: wrap;
 
           i {
-            margin-right: 8px;
-            margin-bottom: 8px;
+            margin-right: 10px;
+            margin-bottom: 10px;
             position: relative;
             display: inline-block;
+            border: 1px solid;
+            border-radius: 8px;
+            padding: 2px;
 
             svg {
               display: block;
