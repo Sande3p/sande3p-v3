@@ -37,3 +37,9 @@ coverage/
 # caches
 .cache/
 .parcel-cache/
+
+# firebase
+.firebase/
+.firebaserc.local
+firebase-debug.log
+firebase*.log
