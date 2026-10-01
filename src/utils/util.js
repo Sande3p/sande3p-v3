@@ -73,13 +73,15 @@ export function getProTechs(item) {
     ? rawTechnologies
     : String(rawTechnologies || '').split(',');
 
-  return technologies
-    .map((tech) => String(tech).trim())
-    .filter(Boolean)
-    .map((tech) => {
-      const key = tech.toLowerCase().replace(/[ .()/]/g, '');
-      return DEVICON_CLASS_MAP[key] || `devicon-${key}-plain`;
-    });
+  return [...new Set(
+    technologies
+      .map((tech) => String(tech).trim())
+      .filter(Boolean)
+      .map((tech) => {
+        const key = tech.toLowerCase().replace(/[ .()/]/g, '');
+        return DEVICON_CLASS_MAP[key] || `devicon-${key}-plain`;
+      })
+  )];
 }
 
 // getTechTitle: format a technology class name back into a readable title

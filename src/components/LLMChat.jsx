@@ -5,12 +5,12 @@ import {
   useRef,
   useState,
 } from "react";
-import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import config from "../config";
+import { requestWithRetry } from "../services/rest-lib";
 
-const LLM_API_URL = config.llmApiUrl || 'http://127.0.0.1:8000/api/chat/';
+const LLM_API_URL = config.llmApiUrl || "http://127.0.0.1:8000/api/chat/";
 
 const getResponseText = (payload) => {
   if (typeof payload === "string") return payload;
@@ -66,32 +66,37 @@ const LLMChat = forwardRef(function LLMChat(_, ref) {
       setIsSending(true);
 
       try {
-        const response = await axios.post(
-          LLM_API_URL,
-          {
-            message: trimmed,
-            website_urls: config.CHAT_WEBSITE_REF_URLS,
-          },
-          {
-            headers: { "Content-Type": "application/json" },
-          },
-        );
+        const response = await requestWithRetry(LLM_API_URL, {
+          message: trimmed,
+          website_urls: config.CHAT_WEBSITE_REF_URLS,
+        });
 
         const replyText =
           getResponseText(response?.data) || "No response received yet.";
 
         setChatLog((prev) => [...prev, { sender: "bot", text: replyText }]);
       } catch (err) {
-        const serverMessage =
-          err?.response?.data?.message ||
-          err?.response?.data?.error ||
-          err?.message ||
-          "Something went wrong while sending the message.";
+        const isServerUnavailable =
+          err?.code === "ECONNABORTED" ||
+          err?.message?.toLowerCase().includes("timeout") ||
+          (!err?.response && !err?.status);
+
+        const serverMessage = isServerUnavailable
+          ? "Unable to reach server. Please try again later."
+          : err?.response?.data?.message ||
+            err?.response?.data?.error ||
+            err?.message ||
+            "Something went wrong while sending the message.";
 
         setError(serverMessage);
         setChatLog((prev) => [
           ...prev,
-          { sender: "bot", text: "Sorry, I couldn't get a response." },
+          {
+            sender: "bot",
+            text: isServerUnavailable
+              ? "Unable to reach server. Please try again later."
+              : "Sorry, I couldn't get a response.",
+          },
         ]);
       } finally {
         setIsSending(false);
@@ -122,9 +127,13 @@ const LLMChat = forwardRef(function LLMChat(_, ref) {
     [submitPrompt],
   );
 
+  const hasText = message.trim().length > 0;
+  const isSubmitDisabled = !hasText || isSending;
+
   const sendMessage = async (event) => {
     event.preventDefault();
-    void submitMessage(message);
+    if (isSubmitDisabled) return;
+    await submitMessage(message);
   };
 
   return (
@@ -156,7 +165,22 @@ const LLMChat = forwardRef(function LLMChat(_, ref) {
 
       <form className="rw" onSubmit={sendMessage}>
         <div className="input-row">
-          <i className="icon-ai-chat animate-rotation" aria-hidden="true"></i>
+          <button
+            type="submit"
+            className="llm-chat__send"
+            disabled={isSubmitDisabled}
+            aria-label={isSending ? "Sending message" : "Send message"}
+            title={isSending ? "Sending message" : "Send message"}
+          >
+            {isSending ? (
+              <i
+                className="icon-ai-chat animate-rotation x3"
+                aria-hidden="true"
+              ></i>
+            ) : (
+              <i className="icon-ai-chat animate-rotation" aria-hidden="true"></i>
+            )}
+          </button>
           <input
             ref={inputRef}
             type="text"

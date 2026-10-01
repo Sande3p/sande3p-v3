@@ -2,6 +2,46 @@
   font-size: $fz-root;
   text-align: left;
 
+  .input-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .llm-chat__send {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    border: 0;
+    border-radius: 999px;
+    background: rgba($white, 0.08);
+    color: inherit;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+
+    &:hover:not(:disabled) {
+      background: rgba($white, 0.14);
+      transform: translateY(-1px);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .llm-chat__spinner {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: llm-chat-spinner 0.8s linear infinite;
+  }
+
   .llm-chat__bubble {
     p {
       margin: 0 0 0.75rem;
@@ -76,5 +116,15 @@
     border: 0;
     border-bottom: 1px dotted rgba($white, 0.2);
     margin: 1rem 0;
+  }
+}
+
+@keyframes llm-chat-spinner {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }
