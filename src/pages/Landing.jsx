@@ -1,7 +1,8 @@
 // Landing.jsx - migrated from app/components/landing/landing.html + landing.js (LandingCtrl)
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import ProgressiveImg from "../components/ProgressiveImg";
 import Footer from "../components/Footer";
+import LLMChat from "../components/LLMChat";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import {
   getBasic,
@@ -15,14 +16,39 @@ import { getProTechs, getTechTitle } from "../utils/util";
 
 const WALL_COUNT = 8;
 
+const CHAT_PROMPTS = [
+  {
+    label: "Ask AI",
+    prompt:
+      "Give me a short summary of my experience, skills, and companies worked for.",
+    icon: true,
+  },
+  {
+    label: "Years of experience",
+    prompt: "How many years of experience does he have?",
+  },
+  {
+    label: "Skills",
+    prompt: "What skills does he have?",
+  },
+  {
+    label: "Companies worked for",
+    prompt: "Which companies has he worked for?",
+  },
+  {
+    label: "How this website",
+    prompt: "How does this website work?",
+  },
+];
+
 export default function Landing() {
   const { get, set } = useLocalStorage();
   const config = useMemo(() => getConfig(), []);
+  const chatRef = useRef(null);
 
   const [dbi, setDbi] = useState(() => get("dbi") || {});
   const [dbl, setDbl] = useState(() => get("dbl") || []);
   const [dbs, setDbs] = useState(() => get("dbs") || {});
-  const [hello, setHello] = useState("");
 
   // fetch basic profile info
   useEffect(() => {
@@ -66,25 +92,6 @@ export default function Landing() {
       })
       .catch(() => {});
   }, [set]);
-
-  const send = useCallback(
-    (e) => {
-      e.preventDefault();
-      const msg = hello;
-      setHello("");
-      window.location = `mailto:${dbi.email}?subject=Hello &body=${msg}`;
-    },
-    [hello, dbi],
-  );
-
-  const enter = useCallback(
-    (e) => {
-      if (e.key === "Enter") {
-        send(e);
-      }
-    },
-    [send],
-  );
 
   const wall = (dbl || []).slice(0, WALL_COUNT);
 
@@ -140,7 +147,10 @@ export default function Landing() {
 
                   <div className="rw-s nw">
                     <div className="stat-item">
-                      <i className="icon-collection-add" data-grunticon-embed></i>
+                      <i
+                        className="icon-collection-add"
+                        data-grunticon-embed
+                      ></i>
                       <span className="v">{config.tcoFinalistCount}x</span>
                       <span className="u">
                         <a
@@ -155,7 +165,10 @@ export default function Landing() {
                     </div>
 
                     <div className="stat-item">
-                      <i className="icon-collection-add" data-grunticon-embed></i>
+                      <i
+                        className="icon-collection-add"
+                        data-grunticon-embed
+                      ></i>
                       <span className="v">{config.tcoTripWinnerCount}x</span>
                       <span className="u">
                         <a
@@ -171,45 +184,29 @@ export default function Landing() {
                   </div>
                 </div>
 
-                <section className="apps-section hide">
-                  <h3>Apps</h3>
+                <section className="chat-section">
                   <div className="rw-s nw">
-                    <div className="app-thumb">
-                      <a
-                        className="app-wrap"
-                        href="https://itunes.apple.com/in/app/time-keeper/id1230340803?mt=8"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <h3>Ask AI</h3>{" "}
+                    {CHAT_PROMPTS.map((item) => (
+                      <button
+                        key={item.label}
+                        type="button"
+                        className={`chat-block${item.icon ? " p-0" : ""}`}
+                        aria-label={item.label}
+                        onClick={() =>
+                          chatRef.current?.submitPrompt(item.prompt)
+                        }
                       >
-                        <figure className="app-icons">
-                          <img
-                            src="http://is1.mzstatic.com/image/thumb/Purple118/v4/d9/7f/39/d97f39c5-bf33-c928-e361-97bfb70d7967/source/175x175bb.jpg"
-                            alt=""
-                          />
-                        </figure>
-                        <h4 className="app-name tagline">Timekeeper </h4>
-                      </a>
-                      <div className="appstore-links">
-                        <div className="u">
-                          <a
-                            href="https://itunes.apple.com/in/app/time-keeper/id1230340803?mt=8"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            On iOS
-                          </a>
-                        </div>
-                        <div className="u">
-                          <a
-                            href="https://play.google.com/store/apps/details?id=com.sanstimekeeper&hl=en"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            On Android
-                          </a>
-                        </div>
-                      </div>
-                    </div>
+                        {item.icon ? (
+                          <i
+                            className="icon-ai-chat llm-pill animate-rotation"
+                            aria-hidden="true"
+                          ></i>
+                        ) : (
+                          <span className="llm-pill">{item.label}</span>
+                        )}
+                      </button>
+                    ))}
                   </div>
                 </section>
 
@@ -306,8 +303,8 @@ export default function Landing() {
         </div>
 
         <div className="sn-rw th-lgt showcase th-ziggy coderwall-effect">
-          <div className="bg-tx">LABS</div>
-          <h2 id="BackToWork">Labs</h2>
+          <div className="bg-tx">Everything</div>
+          <h2 id="BackToWork">Everything else</h2>
           <div className="bg-ziggy icon-abstract3-2" data-grunticon-embed></div>
           <div className="exploders">
             <div className="exploder">
@@ -348,28 +345,7 @@ export default function Landing() {
         </div>
 
         <div className="sn-rw th-lgt th-quoty">
-          <h2 id="SayHello" className="hide">
-            Say Hello
-          </h2>
-          <form className="frm quote">
-            <label htmlFor="iph">Get in touch</label>
-            <div className="rw">
-              <div>
-                <input
-                  type="text"
-                  autoComplete="off"
-                  name="hello"
-                  id="iph"
-                  value={hello}
-                  onChange={(e) => setHello(e.target.value)}
-                  onKeyUp={enter}
-                />
-              </div>
-              <a className={`lk-send${hello ? " a" : ""}`} onClick={send}>
-                Send
-              </a>
-            </div>
-          </form>
+          <LLMChat ref={chatRef} />
         </div>
         <Footer />
       </main>
