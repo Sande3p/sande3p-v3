@@ -45,7 +45,7 @@ const getResponseText = (payload) => {
 };
 
 const formatBotText = (text) =>
-  String(text || "").replace(/<br\s*\/?>(\s*)/gi, "\n");
+  String(text || "").replaceAll(/<br\s*\/?>(\s*)/gi, "\n");
 
 const LLMChat = forwardRef(function LLMChat(_, ref) {
   const [message, setMessage] = useState("");
@@ -53,6 +53,16 @@ const LLMChat = forwardRef(function LLMChat(_, ref) {
   const [isSending, setIsSending] = useState(false);
   const [error, setError] = useState("");
   const inputRef = useRef(null);
+  const chatLogRef = useRef(null);
+
+  const scrollToLatestMessage = useCallback(() => {
+    const logEl = chatLogRef.current;
+    if (!logEl) return;
+
+    requestAnimationFrame(() => {
+      logEl.scrollTop = logEl.scrollHeight;
+    });
+  }, []);
 
   const submitMessage = useCallback(
     async (text) => {
@@ -64,6 +74,7 @@ const LLMChat = forwardRef(function LLMChat(_, ref) {
       setMessage("");
       setError("");
       setIsSending(true);
+      scrollToLatestMessage();
 
       try {
         const response = await requestWithRetry(LLM_API_URL, {
@@ -75,6 +86,7 @@ const LLMChat = forwardRef(function LLMChat(_, ref) {
           getResponseText(response?.data) || "No response received yet.";
 
         setChatLog((prev) => [...prev, { sender: "bot", text: replyText }]);
+        scrollToLatestMessage();
       } catch (err) {
         const isServerUnavailable =
           err?.code === "ECONNABORTED" ||
@@ -98,6 +110,7 @@ const LLMChat = forwardRef(function LLMChat(_, ref) {
               : "Sorry, I couldn't get a response.",
           },
         ]);
+        scrollToLatestMessage();
       } finally {
         setIsSending(false);
       }
@@ -138,7 +151,12 @@ const LLMChat = forwardRef(function LLMChat(_, ref) {
 
   return (
     <div className="frm quote llm-chat">
-      <div id="llm-chat" className="llm-chat__log" aria-live="polite">
+      <div
+        ref={chatLogRef}
+        id="llm-chat"
+        className="llm-chat__log"
+        aria-live="polite"
+      >
         {chatLog.length === 0 && (
           <div className="llm-chat__empty">Ask anything about me</div>
         )}

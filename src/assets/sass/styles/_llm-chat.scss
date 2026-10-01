@@ -8,6 +8,11 @@
     gap: 0.75rem;
   }
 
+  .llm-chat__log {
+    max-height: 632px;
+    overflow: auto;
+  }
+
   .llm-chat__send {
     display: inline-flex;
     align-items: center;
@@ -116,6 +121,11 @@
     border: 0;
     border-bottom: 1px dotted rgba($white, 0.2);
     margin: 1rem 0;
+  }
+  .llm-chat__error {
+    color: $th-glow-2;
+    font-size: 0.875rem; 
+    margin-top: 0.5rem;
   }
 }
 

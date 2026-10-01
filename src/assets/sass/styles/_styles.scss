@@ -106,7 +106,6 @@ body {
 
   &.centered {
     display: flex;
-    display: flex;
     justify-content: center;
     width: 100%;
   }
@@ -187,7 +186,6 @@ body {
     display: block;
     overflow: visible;
     z-index: $zx+5;
-    margin-bottom: -25px;
     background: transparent;
     margin-bottom: -115px;
   }
@@ -316,7 +314,6 @@ body {
     margin-top: -40px;
     font-weight: 500;
     text-transform: uppercase;
-    -webkit-user-select: none;
 
 
     @include view-md {
@@ -335,11 +332,6 @@ body {
       margin-top: -40px;
     }
   }
-
-  /////////////////////
-  // absctrct-footer //
-  /////////////////////
-  .absctrct-footer {}
 }
 
 .th-lgt {
@@ -382,9 +374,9 @@ body {
 
     .snc {
       background: $th-lightest;
-      height: 360px;
+      height: auto;
       position: relative;
-      margin-bottom: -1px;
+      margin-bottom: -20px;
 
       .card {
         position: relative;
@@ -392,11 +384,13 @@ body {
       }
 
       @include view-md {
-        height: 600px;
+        height: auto;
+        margin-bottom: -16px;
       }
 
       @include view-sm {
-        height: 550px;
+        height: auto;
+        margin-bottom: -12px;
       }
     }
 
@@ -644,10 +638,6 @@ body {
 // main-card
 .main-card {
   display: block;
-}
-
-//cards
-.main-card {
   border-radius: $r-5x;
   overflow: hidden;
 
@@ -658,7 +648,6 @@ body {
     height: $sz-x+2*$sp-x;
     line-height: $sz-x;
     padding: $sp-x $sp-4x;
-    display: flex;
     justify-content: space-between;
     display: none;
 
@@ -674,8 +663,6 @@ body {
         @include lk-bdra;
       }
     }
-
-    .toggle-menu {}
   }
 }
 
